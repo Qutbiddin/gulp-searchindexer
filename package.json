@@ -1,5 +1,5 @@
 {
-  "name": "gulp-searchIndexer",
+  "name": "gulp-searchindexer",
   "version": "1.0.0",
   "description": "Gulp plugin for Inverted index Search Engine",
   "main": "index.js",
@@ -10,14 +10,18 @@
     "type": "git",
     "url": "https://github.com/Qutbiddin/gulp-searchindexer.git"
   },
-  "author": {
-    "name": "Qutbiddin"
-  },
+  "author": "Qutbiddin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Qutbiddin/gulp-searchindexer/issues"
   },
   "dependencies": {
     "fstream": "latest"
-  }
+  },
+  "homepage": "https://github.com/Qutbiddin/gulp-searchindexer",
+  "devDependencies": {},
+  "keywords": [
+    "Serach",
+    "chm2web"
+  ]
 }
