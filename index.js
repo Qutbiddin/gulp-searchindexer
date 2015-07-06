@@ -1,5 +1,6 @@
 var fs = require("fs");
 var stopWord = ["OF", "A", "TO", "THE", "ANY"];
+var srcDir;
 
 function getAllFilesFromFolder(dir) {
     var results = [];
@@ -71,11 +72,13 @@ function searchIndexer(dir) {
         SearchTitles = [],
         files = getAllFilesFromFolder(dir);
 
+    srcDir = dir;
+
     for (var i = 0; i < files.length; i++) {
         var url = files[i];
         if (url.match(/\htm$/)) {
             var data = fs.readFileSync(url, 'utf8');
-            var title = data.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+            var title = data.match(/<title[^>]*>([^<]+)<\/title>/)? data.match(/<title[^>]*>([^<]+)<\/title>/)[1] : url.replace('.htm', '');
             var body = data.match(/<body[^>]*>((.|[\n\r])*)<\/body>/im)[1];
 
             text += htmlToString(body);
@@ -95,9 +98,8 @@ function searchIndexer(dir) {
 
     var result = {SearchFiles: SearchFiles, SearchTitles: SearchTitles, SearchIndexes: indexes};
 
-    fs.writeFile('searchdat.json', JSON.stringify(result), function (err) {
+    fs.writeFile(srcDir +'/searchdat.json', JSON.stringify(result), function (err) {
         if (err) throw err;
-        console.log('done');
     });
 }
 
